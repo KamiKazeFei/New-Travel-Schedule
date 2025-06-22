@@ -1,0 +1,141 @@
+@if(schedule){
+<!-- 行程資訊 -->
+<div class="grid editPageGrid">
+  <!-- 標題列 -->
+  <div class="col-12 title">
+    <!-- 調整日期 -->
+    <p-button icon="pi pi-cog" (click)="openEditBasicInfo()" [pTooltip]="'編輯基本資訊'" [tooltipPosition]="'right'">
+    </p-button>
+    <!-- 行程標題 -->
+    <label class="title-label">{{schedule.title}}</label>
+    <!-- 顯示模式 -->
+    <div class="modeOption">
+      <!-- 模式切換 -->
+      <p-selectButton [(ngModel)]="mode" [options]="modeOptions" optionLabel="label" optionValue="value">
+      </p-selectButton>
+      <!-- 行動版總花費 -->
+      <label class="mobileTotalCostLabel" *ngIf="mode === 'cost_record'">
+        總花費<br>{{schedule.realCost | number:'3.0-0'}}
+      </label>
+    </div>
+  </div>
+  <!-- 顯示模式 -->
+  @switch (mode) {
+  <!--  -->
+  @case ('schedule') {
+
+  <!-- 日期選項 -->
+  <div class="col-12 date-option-container">
+    <div class="dateOptionBar">
+      <div class="dateOptionBarDiv">
+        <ul>
+          @for (data of schedule.dayIntroduces; track data.id) {
+          <li [ngClass]="schedule.selectedIntroduce.id === data.id ? 'selectedDateOption' : 'dateOption'"
+            (click)="switchSelectedData(data)">
+            <label>{{ data.date | date: 'MM/dd' }} ({{ data.date | weekDateString }})</label>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 標題列(手機模式不顯示) -->
+  <div class="col-12 scheduleListTitle">
+    <div class="grid">
+      <!-- 移動 -->
+      <div class="col-6 xl:col-1 lg:col-2 md:col-3 autoCenter">
+        <label>{{'變更順序'}}</label>
+      </div>
+      <!-- 順序 -->
+      <div class="col-6 xl:col-1 lg:col-2 md:col-3 autoCenter">
+        <label>{{'順序'}}</label>
+      </div>
+      <!-- 停留時間 -->
+      <div class="col-12 xl:col-1 lg:col-1 md:col-4 autoCenter">
+        <label>{{'時段'}}</label>
+      </div>
+      <!-- 敘述 -->
+      <div class="col-12 xl:col-6 lg:col-5 md:col-8 autoCenter">
+        <label>{{'敘述'}}</label>
+      </div>
+      <!-- Google地圖網址 -->
+      <div class="col-12 xl:col-2 lg:col-1 md:col-4 center">
+        <label>{{'地點網址'}}</label>
+      </div>
+      <!-- 移除 -->
+      <div class="col-12 xl:col-1 lg:col-1 md:col-2 autoCenter">
+        <label>{{'移除'}}</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行程列表 -->
+  <div class="col-12 editPage">
+    <app-schedule-day [schedule]="schedule"></app-schedule-day>
+  </div>
+  }
+
+  <!--  -->
+  @case ('costRecord') {
+  <div class="col-12 editPage">
+    <app-cost-record [schedule]="schedule"></app-cost-record>
+  </div>
+  }
+  }
+</div>
+
+<!-- 頁尾 -->
+<div class="footer">
+  <!-- 新增預算紀錄 -->
+  @if(mode === 'costRecord') {
+  <p-button icon="pi pi-plus" [pTooltip]="'新增預算紀錄'" [tooltipPosition]="'top'" (click)="createCostRecord()">
+  </p-button>
+  }
+
+  <!-- 新增行程 -->
+  @if(mode === 'schedule') {
+  <p-button icon="pi pi-plus" (click)="createDayIntroduce()" [pTooltip]="'新增行程'" [tooltipPosition]="'top'">
+  </p-button>
+  }
+
+  <!-- 輸出PDF -->
+  <p-button icon="pi pi-file" (click)="openExportPdfSettingDialog()" [pTooltip]="'輸出PDF'" [tooltipPosition]="'top'">
+  </p-button>
+
+  <!-- 儲存 -->
+  <p-button icon="pi pi-save" (click)="save()" [pTooltip]="'儲存'" [tooltipPosition]="'top'">
+  </p-button>
+
+  <!-- 取消 -->
+  <p-button icon="pi pi-times" (click)="confirmCancel()" [pTooltip]="'離開編輯畫面'" [tooltipPosition]="'top'">
+  </p-button>
+</div>
+}
+
+<!-- 顯示ICON -->
+<ng-template #icon let-columnName="columnName">
+  <ng-container *ngIf="checkSortKeyInMap(columnName)">
+    <!-- 遞增 -->
+    <ng-container *ngIf="costRecordSortMap[columnName];else reverse">
+      <label>▲</label>
+    </ng-container>
+    <!-- 遞減 -->
+    <ng-template #reverse>
+      <label>▼</label>
+    </ng-template>
+  </ng-container>
+</ng-template>
+
+<!-- 行程資訊設定 -->
+@if(basicInfoSettingDialog){
+<app-schedule-info-dialog [(visible)]="basicInfoSettingDialog" [selectedSchedule]="selectedSchedule"
+  (confirmEmitter)="onBasicInfoUpdate($event)">
+</app-schedule-info-dialog>
+}
+
+<!-- PDF 匯出設定 -->
+@if(exportPdfSettingDialog){
+<app-pdf-export-dialog [(exportPdfSettingDialog)]="exportPdfSettingDialog" [schedule]="schedule">
+</app-pdf-export-dialog>
+}

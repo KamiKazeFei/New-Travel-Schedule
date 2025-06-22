@@ -1,0 +1,20 @@
+<p-dialog [(visible)]="exportPdfSettingDialog" [modal]="true" [style]="{width:'400px','font-size':'16px'}"
+  [header]="'輸出行程PDF設定'" [closable]="false" [blockScroll]="true">
+  <div class="grid">
+    <div class="col-12 flex flex-wrap align-items-center">
+      <p-checkbox inputId="isExportCostRecord" [(ngModel)]="isExportCostRecord" binary="true">
+      </p-checkbox>
+      是否要輸出預算表
+    </div>
+  </div>
+  <ng-template #footer>
+    <!-- 確認 -->
+    <p-button icon="pi pi-check" [label]="'確認'" (click)="downloadPdf()">
+    </p-button>
+    <!-- 取消 -->
+    <p-button icon="pi pi-times" (click)="closeExportPdfSettingDialog()" [label]="'取消'">
+    </p-button>
+  </ng-template>
+</p-dialog>
+
+<img id="hiddenChart" alt="隱藏圖表">

@@ -1,0 +1,182 @@
+// ===== 變數定義 =====
+$main-background-color: rgb(8, 65, 65);
+$darkcyan-color: darkcyan;
+$white-color: white;
+$light-gray-color: lightgray;
+$dark-bg-color: rgb(22, 46, 62);
+$burlywood-color: burlywood;
+
+// ===== 全域設定 =====
+* {
+  --main-background-color: #{$darkcyan-color};
+}
+
+// ===== Mixins =====
+@mixin cost-label {
+  color: $white-color;
+  font-size: 20px;
+  margin-top: 3px;
+  float: right;
+}
+
+// ===== 基礎樣式 =====
+.white-color {
+  color: white;
+}
+
+.left {
+  float: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.grayBottom {
+  border-bottom: 2px solid $light-gray-color;
+}
+
+.zeroPadding {
+  padding: 0;
+}
+
+// ===== 預算紀錄相關 =====
+.cost-record-contet {
+  overflow: auto;
+  max-width: 100%;
+}
+
+.cost-record-title {
+  color: white;
+  font-size: 26px;
+  margin-top: 7px;
+}
+
+// 工具列
+.toolbar {
+  min-height: 70px;
+}
+
+.toolbarCostLabel {
+  @include cost-label;
+}
+
+// 總花費顯示區
+.totalCostBar {
+  display: none;
+}
+
+.totalCostLabel {
+  @include cost-label;
+}
+
+// 排序欄位
+.sortColumn {
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
+
+  &,
+  >* {
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+  }
+
+  &:hover {
+    background: rgb(34, 187, 187);
+  }
+}
+
+// 預算記錄列表
+.costRecordList {
+  background: transparent;
+  border-radius: 4px;
+  overflow: auto;
+  position: static;
+  width: 100%;
+  padding-bottom: 25px;
+
+  // 輸入框樣式
+  >*>*>*>*>.p-inputtext {
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid $white-color;
+    border-radius: 0px;
+  }
+
+  // 下拉選單選項樣式
+  >*>*>*>*>select>option {
+    background: rgb(31, 61, 81) !important;
+    color: $white-color !important;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+}
+
+// 單筆預算記錄
+.costRecord {
+  // 個別記錄項目樣式
+}
+
+// 按鈕相關
+.mobileDeleteBtn {
+  display: none;
+}
+
+.desktopDeleteBtn {
+  display: block;
+}
+
+// ===== 響應式設計 =====
+@media screen and (max-width: 500px) {
+
+  // 隱藏桌面版標題列
+  .costRecordTitle {
+    display: none;
+  }
+
+  // 顯示手機版總花費
+  .totalCostBar {
+    display: flex;
+  }
+
+  // 隱藏工具列的花費標籤
+  .toolbarCostLabel {
+    display: none;
+  }
+
+  // 手機版按鈕顯示控制
+  .mobileDeleteBtn {
+    display: block;
+  }
+
+  .desktopDeleteBtn {
+    display: none;
+  }
+
+  // 手機版總花費標籤
+  .mobileTotalCostLabel {
+    font-size: 19.5px;
+    font-weight: 900;
+    color: $white-color;
+    float: right;
+    display: flex;
+    margin: 0px auto;
+  }
+}
+
+// ===== Angular Deep Selectors =====
+::ng-deep {
+
+  // PrimeNG 元件樣式覆寫
+  .p-button.p-fileupload-choose {
+    color: $white-color;
+    background: $darkcyan-color;
+  }
+}
+
+// ===== PrimeNG 輸入數字元件 =====
+:host p-inputnumber {
+  width: 100%;
+}

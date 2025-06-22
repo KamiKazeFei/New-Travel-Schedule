@@ -1,0 +1,69 @@
+<div class="grid p-0">
+  <!-- 餐食、住宿 -->
+  <div class="col-12 xl:col-5 lg:col-5">
+    <div class="grid zeroPadding">
+      <div class="col-12 xl:col-7 lg:col-7 md:col-7">
+        <label>住宿🌃</label>
+        <input pInputText type="text" [(ngModel)]="schedule.selectedIntroduce.hotelName" />
+      </div>
+      <div class="col-12 xl:col-5 lg:col-5 md:col-5 scheduleMapLocation">
+        <label (click)="gotoUrl(schedule.selectedIntroduce.hotelLocation)" class="url-link">
+          網址📌
+        </label>
+        <input pInputText type="text" class="url-input" [(ngModel)]="schedule.selectedIntroduce.hotelLocation" />
+      </div>
+    </div>
+    <div class="grid zeroPadding">
+      <div class="col-12 xl:col-7 lg:col-7 md:col-7">
+        <label>早餐🍽️</label>
+        <input pInputText type="text" [(ngModel)]="schedule.selectedIntroduce.breakfast" />
+      </div>
+      <div class="col-12 xl:col-5 lg:col-5 md:col-5 scheduleMapLocation">
+        <label (click)="gotoUrl(schedule.selectedIntroduce.breakfastLocation)" class="url-link">
+          網址📌
+        </label>
+        <input pInputText type="text" class="url-input" [(ngModel)]="schedule.selectedIntroduce.breakfastLocation" />
+      </div>
+    </div>
+    <div class="grid zeroPadding">
+      <div class="col-12 xl:col-7 lg:col-7 md:col-7">
+        <label>午餐🍽️</label>
+        <input pInputText type="text" [(ngModel)]="schedule.selectedIntroduce.launch" />
+      </div>
+      <div class="col-12 xl:col-5 lg:col-5 md:col-5 scheduleMapLocation">
+        <label (click)="gotoUrl(schedule.selectedIntroduce.launchLocation)" class="url-link">
+          網址📌
+        </label>
+        <input pInputText type="text" class="url-input" [(ngModel)]="schedule.selectedIntroduce.launchLocation" />
+      </div>
+    </div>
+    <div class="grid zeroPadding">
+      <div class="col-12 xl:col-7 lg:col-7 md:col-7">
+        <label>晚餐🍽️</label>
+        <input pInputText type="text" [(ngModel)]="schedule.selectedIntroduce.dinner" />
+      </div>
+      <div class="col-12 xl:col-5 lg:col-5 md:col-5 scheduleMapLocation">
+        <label (click)="gotoUrl(schedule.selectedIntroduce.dinnerLocation)" class="url-link">
+          網址📌
+        </label>
+        <input pInputText type="text" class="url-input" [(ngModel)]="schedule.selectedIntroduce.dinnerLocation" />
+      </div>
+    </div>
+  </div>
+  <!-- 購物清單 -->
+  <div class="col-12 xl:col-4 lg:col-4">
+    <label>{{'購物項目'}}</label>
+    <p-editor [(ngModel)]="schedule.selectedIntroduce.shoppingDetail" class="shopping-editor">
+      <p-header>
+      </p-header>
+    </p-editor>
+  </div>
+  <!-- 備註 -->
+  <div class="col-12 xl:col-3 lg:col-3">
+    <label>{{'備註'}}</label>
+    <p-editor [(ngModel)]="schedule.selectedIntroduce.memo" class="memo-editor">
+      <p-header>
+      </p-header>
+    </p-editor>
+  </div>
+</div>

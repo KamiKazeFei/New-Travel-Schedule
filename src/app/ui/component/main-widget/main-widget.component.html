@@ -1,0 +1,60 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+  <div class="container">
+        <a class="navbar-brand fw-bold" href="#page-top">行程規劃</a>
+        <button title="開啟選單"
+          class="navbar-toggler"
+          type="button"
+          [attr.data-bs-toggle]="'collapse'"
+          [attr.data-bs-target]="'#navbarResponsive'"
+          [attr.aria-controls]="'navbarResponsive'"
+          [attr.aria-expanded]="isMenuOpen"
+          [attr.aria-label]="'Toggle navigation'"
+          (click)="toggleMenu()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible menu -->
+        <div class="collapse navbar-collapse"
+             id="navbarResponsive"
+             [class.show]="isMenuOpen"
+          >
+          <ul class="navbar-nav ms-auto">
+            @for (data of menu; track data) {
+              <li class="nav-item">
+                <a class="nav-link"
+                   (click)="goto($event, data.url)"
+                   [class.active]="data.active">
+                  {{data.label}}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+  </div>
+</nav>
+</div>
+
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- 載入畫面 -->
+@if (loading) {
+<app-loading [(loading)]="loading"></app-loading>
+}
+
+<!-- 確認視窗 -->
+<p-confirmdialog #cd
+  [style]="{'min-width': '400px','max-width': '800px','font-size':'16px','word-break': 'break-all' }"
+  [closable]="false">
+  <ng-template pTemplate="footer">
+    <button title="確認" type="button" pButton icon="pi pi-check" label="確認"
+      (click)="cd.onAccept()"></button>
+    <button title="取消" type="button" pButton icon="pi pi-times" label="取消"
+      (click)="cd.onReject()"></button>
+  </ng-template>
+</p-confirmdialog>
+
+<!-- 顯示訊息 -->
+<p-toast [life]="10000" position="top-center"></p-toast>

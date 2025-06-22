@@ -1,0 +1,73 @@
+<div class="grid">
+  <div class="col-12 p-0">
+    @if(schedule?.selectedIntroduce?.scheduleList?.length > 0) {
+    <div class="grid dayPerScheduleList" id="dayPerScheduleList" cdkDropList
+      (cdkDropListDropped)="changeScheduleOrder($event)">
+      @for (data of schedule.selectedIntroduce.scheduleList; track data.serNo; let idx = $index) {
+      <div class="col-12 dragBlock" cdkDrag>
+        <div class="scheduleBlock">
+          <div class="grid p-0">
+            <!-- 移除 -->
+            <div class="col-2 xl:col-1 lg:col-1 md:col-2 center mobileDeleteBtn">
+              <p-button [icon]="'pi pi-trash'" (click)="deleteDaysSchedule(idx)">
+              </p-button>
+            </div>
+
+            <!-- 移動 -->
+            <div class="col-2 xl:col-1 lg:col-2 md:col-3 autoCenter">
+              <i class="pi pi-list drag-handle text-3xl cursor-pointer" cdkDragHandle></i>
+            </div>
+
+            <!-- 順序 -->
+            <div class="col-8 xl:col-1 lg:col-2 md:col-3 autoCenter">
+              <label class="text-3xl">
+                {{ data.serNo }}
+              </label>
+            </div>
+
+            <!-- 停留時間 -->
+            <div class="col-12 xl:col-1 lg:col-1 md:col-4 center">
+              <label class="notRowLabel">時段</label>
+              <input pInputText type="text" [(ngModel)]="data.time" />
+            </div>
+
+            <!-- 敘述 -->
+            <div class="col-12 xl:col-6 lg:col-5 md:col-8 center">
+              <label class="notRowLabel">敘述</label>
+              <input pInputText type="text" [(ngModel)]="data.description" />
+            </div>
+
+            <!-- Google地圖網址 -->
+            <div class="col-10 xl:col-2 lg:col-1 md:col-4 center scheduleMapLocation">
+              <label class="notRowLabel">地點網址</label>
+              <p-inputgroup>
+                <p-inputgroup-addon (click)="gotoUrl(data.mapLocation)" styleClass="inputGroupAddon">
+                  📌
+                </p-inputgroup-addon>
+                <input pInputText type="text" [(ngModel)]="data.mapLocation" />
+              </p-inputgroup>
+            </div>
+
+            <!-- 移除 -->
+            <div class="col-2 xl:col-1 lg:col-1 md:col-2 center widthScreenDeleteBtn">
+              <p-button [icon]="'pi pi-trash'" (click)="deleteDaysSchedule(idx)">
+              </p-button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+    @else {
+    <div class="w-full center">
+      <p class="text-2xl font-bold">沒有任何行程</p>
+    </div>
+    }
+  </div>
+
+  <!-- 備註資訊 -->
+  <div class="col-12 subDataGrid p-0">
+    <app-comment-info [schedule]="schedule"></app-comment-info>
+  </div>
+</div>

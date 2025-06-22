@@ -1,0 +1,12 @@
+<p-dialog [(visible)]="costAnalysisDialogVisible" [modal]="true" [style]="{width:'800px','height':'83%'}"
+  [header]="'檢視花費分析'" [closable]="false" [blockScroll]="true">
+  <div class="maxArea">
+    @if(costRecords.length > 0) {
+    <div id="costRecordChart" class="maxArea"></div>
+    }
+  </div>
+  <ng-template #footer>
+    <p-button icon="pi pi-times" (click)="closeCostAnalysisDialog()">
+    </p-button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,138 @@
+// 顏色變數
+$primary-color: #1ee2e7;
+$primary-hover: #17d0d5;
+$secondary-color: #fec503;
+$dark-bg: #222;
+$white: #fff;
+
+#mainNav {
+  background-color: rgb(209 217 242 / 10%);
+}
+
+.container {
+  width: 95%;
+}
+
+// 通用連結樣式
+a {
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: $primary-hover;
+  }
+}
+
+// 導航列樣式
+.navbar {
+  margin-bottom: 3px;
+
+  &-default {
+    border-color: transparent;
+    background-color: $dark-bg;
+
+    .navbar-brand {
+      color: $primary-color;
+
+      &:hover,
+      &:focus,
+      &:active,
+      &.active {
+        color: $secondary-color;
+      }
+    }
+
+    .navbar-collapse {
+      border-color: rgba(255, 255, 255, .02);
+    }
+
+    .navbar-toggle {
+      border-color: $primary-color;
+      background-color: $primary-color;
+
+      .icon-bar {
+        background-color: $white;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $primary-color;
+      }
+    }
+
+    .navbar-nav {
+      >.active>a {
+        border-radius: 0;
+        color: $white;
+        background-color: $primary-color;
+
+        &:hover,
+        &:focus {
+          color: $white;
+          background-color: $primary-hover;
+        }
+      }
+
+      >li {
+        cursor: pointer;
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+:host {
+  .navbar-default .nav li a {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      outline: 0;
+      color: $primary-color;
+    }
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+// 響應式樣式
+@media (min-width: 768px) {
+  .navbar-default {
+    padding: 25px 0;
+    border: 0;
+    background-color: transparent;
+    transition: padding .3s;
+
+    .navbar-brand {
+      font-size: 2em;
+      transition: all .3s;
+    }
+
+    .navbar-nav>.active>a {
+      border-radius: 3px;
+    }
+
+    &.navbar-shrink {
+      padding: 10px 0;
+      background-color: $dark-bg;
+
+      .navbar-brand {
+        font-size: 1.5em;
+      }
+    }
+  }
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+.content-wrapper {
+  padding-top: 70px; // 根據 navbar 高度微調
+}

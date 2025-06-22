@@ -1,0 +1,172 @@
+// 變數定義
+:root {
+  --main-background-color: rgb(8, 65, 65);
+}
+
+// 主機樣式
+:host {
+
+  // 頁尾
+  .footer {
+    position: fixed;
+    bottom: 2%;
+    right: 5%;
+    display: flex;
+    align-items: center;
+  }
+
+  // 圓按鈕
+  .roundBtn {
+    border-radius: 50%;
+    background-color: darkcyan;
+    color: white;
+    border: 2px solid darkcyan;
+    width: 40px;
+    height: 40px;
+  }
+
+  // 標籤樣式
+  label {
+    margin-bottom: 0px;
+  }
+}
+
+// 行程列表相關樣式
+.scheduleListGrid {
+  min-height: 85%;
+  max-height: 85%;
+  display: block;
+
+  >.col-12:nth-child(2) {
+    height: 100%;
+    position: fixed;
+  }
+}
+
+// 行程列表標題
+.scheduleListTitle {
+  color: white;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  padding: 5px 25px 0px 0px;
+}
+
+// 行程列表
+.scheduleList {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 86%;
+  max-height: 86%;
+  align-content: baseline;
+}
+
+// 包裹行程卡片的網格
+.scheduleCol {
+  padding: 25px;
+  height: fit-content;
+}
+
+// 行程卡片
+.scheduleCard {
+  width: 100%;
+  height: 200px;
+  text-align: left;
+  padding: 15px 10px 15px 20px;
+  box-shadow: 5px 5px 0px 0px var(--main-background-color);
+  border: 2px solid white;
+  background: linear-gradient(45deg, black, transparent);
+  cursor: pointer;
+  border-radius: 25px;
+
+  >* {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background: rgb(22, 46, 62);
+  }
+}
+
+// 行程卡片標題
+.scheduleCardTitle {
+  >* {
+    cursor: pointer;
+  }
+
+  >label:nth-child(1) {
+    font-size: 19.5px;
+    color: antiquewhite;
+  }
+
+  >label:nth-child(3) {
+    font-size: 17.5px;
+    color: lightseagreen;
+  }
+}
+
+// 行程敘述
+.scheduleDescription {
+  color: lightblue;
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 750;
+}
+
+// 行程設定按鈕
+.scheduleSettingBtn {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  float: right;
+  background: darkcyan;
+  border: 1px solid darkcyan;
+  color: white;
+  font-size: 25px;
+}
+
+// 響應式設計
+@media screen and (min-width: 501px) and (max-width: 995px) {
+  .scheduleListTitle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .scheduleSettingBtn {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+  }
+
+  .scheduleCardTitle {
+    >label:nth-child(1) {
+      font-size: 19px;
+    }
+
+    >label:nth-child(3) {
+      font-size: 16px;
+    }
+  }
+
+  .scheduleListTitle {
+    display: none;
+  }
+}
+
+.createLabel {
+  color: white;
+  font-size: 21px;
+  margin-right: 15px;
+}
+
+.notFoundLabel {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+}

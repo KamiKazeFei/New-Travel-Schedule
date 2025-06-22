@@ -1,0 +1,724 @@
+// 全局變量
+$main-background-color: rgb(8, 65, 65);
+$darkcyan-color: darkcyan;
+$white-color: white;
+$light-blue-color: lightblue;
+$light-sea-green-color: lightseagreen;
+$antique-white-color: antiquewhite;
+$dark-bg-color: rgb(22, 46, 62);
+$orange-color: orange;
+$gray-color: gray;
+$light-gray-color: lightgray;
+$burlywood-color: burlywood;
+
+// 全局設置
+* {
+  --main-background-color: #{darkcyan-color};
+}
+
+// 包裹行程卡片的網格
+.scheduleCol {
+  padding: 25px;
+  height: fit-content;
+}
+
+// 行程顯示
+.scheduleCard {
+  width: 100%;
+  height: 200px;
+  text-align: left;
+  padding: 15px 10px 15px 20px;
+  box-shadow: 5px 5px 0px 0px var(--main-background-color);
+  border: 2px solid $white-color;
+  background: linear-gradient(45deg, black, transparent);
+  cursor: pointer;
+  border-radius: 25px;
+
+  >* {
+    cursor: pointer;
+  }
+
+  &:hover {
+    background: $dark-bg-color;
+  }
+}
+
+// 行程列表標題
+.scheduleListTitle {
+  color: $white-color;
+  font-size: 30px;
+  font-weight: 900;
+  text-align: center;
+  padding: 1.15rem;
+  padding-bottom: 0px;
+  border-top: 1px solid $gray-color;
+}
+
+// 行程卡片標題
+.scheduleCardTitle {
+  >* {
+    cursor: pointer;
+  }
+
+  >label:nth-child(1) {
+    font-size: 19.5px;
+    color: $antique-white-color;
+  }
+
+  >label:nth-child(2) {
+    font-size: 17.5px;
+    color: $light-sea-green-color;
+  }
+}
+
+// 行程敘述
+.scheduleDescription {
+  color: $light-blue-color;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 750;
+}
+
+// 行程刪除按鈕
+.scheduleSettingBtn {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  float: right;
+  background: $darkcyan-color;
+  border: 1px solid $darkcyan-color;
+  color: $white-color;
+  font-size: 25px;
+}
+
+hr {
+  margin: 3px;
+}
+
+.scheduleListGrid {
+  min-height: 85%;
+  max-height: 85%;
+  display: block;
+
+  >.col-12:nth-child(2) {
+    height: 100%;
+    position: fixed;
+  }
+}
+
+// 行程列表
+.scheduleList {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-height: 86%;
+  max-height: 86%;
+  border-bottom: 2px solid $white-color;
+  align-content: baseline;
+}
+
+// 頁尾
+:host .footer {
+  position: fixed;
+  bottom: 2%;
+  right: 5%;
+  display: flex;
+  align-items: center;
+}
+
+// 圓按鈕
+:host .roundBtn {
+  border-radius: 50%;
+  background-color: $darkcyan-color;
+  color: $white-color;
+  border: 2px solid $darkcyan-color;
+  width: 40px;
+  height: 40px;
+}
+
+:host label {
+  margin-bottom: 0px;
+}
+
+// 日期選項相關
+.dateOptionBar {
+  display: inline-flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.dateOptionBarDiv {
+  >ul {
+    display: inline-flex;
+    width: 100%;
+
+    >li {
+      list-style: none;
+    }
+  }
+}
+
+// 可選日期選項
+.dateOption {
+  border-radius: 10px;
+  border: 3px solid $darkcyan-color;
+  color: $white-color;
+  font-size: 16px;
+  font-weight: 900;
+  width: 90px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+  transition: 0.3s;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    background: $darkcyan-color;
+    color: $white-color;
+  }
+
+  >* {
+    cursor: pointer;
+  }
+}
+
+// 已選日期
+.selectedDateOption {
+  user-select: none;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 10px;
+  background: $darkcyan-color;
+  color: $white-color;
+  border: 3px solid $darkcyan-color;
+  font-size: 16px;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
+
+  >* {
+    cursor: pointer;
+  }
+}
+
+// 設定按鈕欄位
+.dateSettingBtnCol {
+  margin: auto;
+  padding: 0px;
+  text-align: center;
+  margin-top: 0px;
+}
+
+// 灰底
+.grayBottom {
+  border-bottom: 2px solid $light-gray-color;
+}
+
+// 行程敘述
+.description {
+  border-bottom: 3px solid rgb(177, 149, 98);
+  color: $white-color;
+  font-size: 20px;
+  padding-left: 45px;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+// 行程標題
+.title {
+  padding-left: 25px;
+
+  >label {
+    font-size: 25px !important;
+    color: $white-color;
+  }
+}
+
+.editPageGrid {
+  min-height: 85%;
+}
+
+// 編輯介面
+.editPage {
+  min-height: 60%;
+  display: block;
+  color: $white-color;
+}
+
+// 行程編輯方塊
+.scheduleBlock {
+  margin: 5px 0px;
+  padding: 5px;
+
+  >*>*>.p-inputtext,
+  input,
+  .p-inputgroup-addon {
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid $white-color;
+    border-radius: 0px;
+  }
+}
+
+// 行程列表
+.dayPerScheduleList {
+  display: block;
+
+  &.cdk-drop-list-dragging .dragBlock:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+// 子項目網格
+.subDataGrid {
+  color: $white-color;
+
+  >*>*>*>*>.p-inputtext {
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid $white-color;
+    border-radius: 0px;
+  }
+}
+
+// 子項目小列表
+.minList {
+  min-height: 60px;
+  max-height: 83%;
+  display: block;
+  background: transparent;
+  border-radius: 4px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+// 可拖曳方塊
+.dragBlock {
+  padding: 10px;
+  color: $white-color;
+  background: transparent;
+  font-size: 14px;
+}
+
+// 拖曳相關樣式
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+// 刪除按鈕
+.deleteBtn {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: $white-color;
+  border: 2px solid $white-color;
+}
+
+// Deep selectors (保持原有的 Angular 特定選擇器)
+::ng-deep {
+  .ql-editor {
+    background: transparent;
+    color: $white-color;
+  }
+
+  :host .p-tabview-panels {
+    height: 85%;
+  }
+
+  .p-selectbutton {
+    transition: 0.3s;
+
+    .p-button.p-highlight {
+      background: $white-color;
+      color: $darkcyan-color;
+    }
+  }
+
+  .p-fileupload-content {
+    max-height: 90%;
+    min-height: 90%;
+    height: 90%;
+    border: 3px solid;
+    border-radius: 15px;
+    background: $dark-bg-color;
+    color: $white-color;
+    overflow: auto;
+  }
+
+  .p-button.p-fileupload-choose {
+    color: $white-color;
+    background: $darkcyan-color;
+  }
+
+  .p-fileupload>.p-fileupload-choose>input {
+    display: none !important;
+  }
+}
+
+// 花費紀錄列表
+.costRecordList {
+  min-height: 60px;
+  max-height: 65%;
+  min-width: 750px;
+  background: transparent;
+  border-radius: 4px;
+  overflow: auto;
+  position: absolute;
+  width: 100%;
+  position: static;
+  padding-bottom: 25px;
+
+  >*>*>*>*>.p-inputtext {
+    background: transparent;
+    border: 0px;
+    border-bottom: 1px solid $white-color;
+    border-radius: 0px;
+  }
+
+  >*>*>*>*>select>option {
+    background: rgb(31, 61, 81) !important;
+    color: $white-color !important;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+}
+
+// 動畫
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+// 各種標籤樣式
+.totalCostLabel {
+  color: $white-color;
+  font-size: 20px;
+  margin-top: 3px;
+  float: right;
+}
+
+.addNewRecordLabel {
+  color: $white-color;
+  font-size: 20px;
+  float: left;
+  margin-top: 10px;
+}
+
+.costRecordListTitle {
+  >div {
+    cursor: pointer;
+  }
+}
+
+.modeOption {
+  float: right;
+  display: inline-flex;
+  padding-top: 15px;
+}
+
+.notRowLabel {
+  display: none;
+}
+
+.smallMoveContent {
+  display: none;
+}
+
+.addNewDayBtn {
+  display: none;
+}
+
+.bigAddNewDayBtn {
+  display: unset;
+}
+
+.budgetLabel {
+  color: $white-color;
+  font-size: 20px;
+  float: right;
+  margin-right: 10px;
+}
+
+.mobileDeleteBtn {
+  display: none;
+}
+
+.mobileTotalCostLabel {
+  display: none;
+}
+
+// 排序格
+.sortColumn {
+  cursor: pointer;
+  transition: 0.2s;
+  user-select: none;
+
+  &,
+  >* {
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+  }
+
+  &:hover {
+    background: rgb(34, 187, 187);
+  }
+}
+
+// 檔案相關樣式
+.fileListTitle {
+  padding-left: 115px;
+  padding-bottom: 15px;
+
+  >label {
+    font-size: 26px;
+    color: $white-color;
+    display: inline-flex;
+  }
+
+  >div {
+    display: inline-flex;
+    position: relative;
+    right: 0px;
+    float: right;
+  }
+}
+
+.fileList {
+  min-height: 60px;
+  max-height: 64%;
+  display: flex;
+  background: transparent;
+  border-radius: 4px;
+  overflow-x: auto;
+  position: absolute;
+  width: 99%;
+  border-top: 0.5px solid $white-color;
+  border-bottom: 0.5px solid $white-color;
+  margin-bottom: 10px;
+}
+
+.fileBlock {
+  padding: 10px;
+  text-align: center;
+
+  >div {
+    border: 2px solid $white-color;
+    background: transparent;
+    border-radius: 15px;
+    color: $white-color;
+    min-height: 130px;
+    font-size: 20px;
+    padding: 15px 10px 0px 10px;
+
+    >label {
+      overflow: hidden;
+      margin-bottom: 10px;
+      word-break: break-all;
+      min-height: 40px;
+    }
+  }
+}
+
+.fileFuncBar {
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid $light-gray-color;
+}
+
+#fileNameEditInput {
+  background: #285b6b;
+  border-radius: 5px;
+}
+
+:host p-inputnumber {
+  width: 100%;
+}
+
+// 響應式設計
+@media screen and (min-width: 501px) and (max-width: 995px) {
+  .scheduleListTitle {
+    display: none;
+  }
+
+  .scheduleBlock {
+    border-bottom: 1px solid $orange-color;
+  }
+
+  .notRowLabel {
+    display: block;
+    color: $burlywood-color;
+    font-weight: 900;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .dayPerScheduleList {
+    position: unset;
+  }
+
+  .scheduleSettingBtn {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+  }
+
+  .scheduleCardTitle {
+    >label:nth-child(1) {
+      font-size: 19px;
+    }
+
+    >label:nth-child(2) {
+      font-size: 16px;
+    }
+  }
+
+  .editPage {
+    min-height: 47%;
+    display: block;
+  }
+
+  .scheduleBlock {
+    border-bottom: 1px solid $orange-color;
+  }
+
+  .modeOption {
+    text-align: center;
+    display: flex;
+  }
+
+  .scheduleListTitle {
+    display: none;
+  }
+
+  .notRowLabel {
+    display: block;
+    color: $burlywood-color;
+    font-weight: 900;
+  }
+
+  .addNewDayBtn {
+    position: fixed;
+    bottom: 10px;
+    display: block;
+    z-index: 999999999;
+  }
+
+  .bigAddNewDayBtn {
+    display: none;
+  }
+
+  .smallMoveContent {
+    display: block;
+  }
+
+  .subDataGrid {
+    position: relative;
+    padding-bottom: 85px;
+  }
+
+  .costRecordGrid {
+    overflow-x: auto;
+    min-width: fit-content;
+    padding-bottom: 5%;
+  }
+
+  .costRecordList {
+    overflow: unset;
+  }
+
+  .mobileDeleteBtn {
+    display: flex;
+  }
+
+  .scheduleMapLocation {
+    display: none;
+  }
+
+  .widthScreenDeleteBtn {
+    display: none;
+  }
+
+  .mobileCostRecordColumn {
+    display: none;
+  }
+
+  .totalCostLabel {
+    margin-top: unset;
+    float: unset;
+    position: unset;
+    margin-right: 0px !important;
+    float: right;
+    display: none;
+  }
+
+  .addNewCostRecordBtn {
+    position: fixed;
+    bottom: 18px;
+    left: 0px;
+    background: $darkcyan-color;
+    z-index: 9;
+  }
+
+  .mobileTotalCostLabel {
+    font-size: 19.5px;
+    font-weight: 900;
+    color: $white-color;
+    float: right;
+    display: flex;
+    margin: 0px auto;
+  }
+
+  .fileListTitle {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.inputGroupAddon {
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid $white-color;
+  border-radius: 0px;
+  border-left: 0px;
+}
+
+::ng-deep .ql-editor {
+  min-height: 275px;
+  max-height: 275px;
+}
+
+.moveContent {
+  font-size: 2rem;
+}

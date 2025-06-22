@@ -1,0 +1,52 @@
+<!-- 資料列表 -->
+<div class="scheduleListGrid">
+  <div class="grid scheduleList">
+    @for (data of travelScheduleList; track data.id) {
+    <div class="col-12 xl:col-4 lg:col-6 scheduleCol" (click)="getTravelSchedule(data.id)">
+      <div class="scheduleCard">
+        <div class="grid">
+          <!-- 行程標題 -->
+          <div class="col-10 scheduleCardTitle">
+            <!-- 行程標題 -->
+            <label>{{data.title}}</label>
+            <br>
+            <!-- 行程日期 -->
+            <label>
+              {{
+              (data.startDate | date:'yyyy/MM/dd (EE)') + '~' +
+              (data.endDate | date:'yyyy/MM/dd (EE)')
+              }}
+            </label>
+          </div>
+          <div class="col-12">
+            <div class="scheduleDescription">
+              {{data.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <!-- 空狀態顯示 -->
+    <div class="col-12 text-center">
+      <p class="notFoundLabel">
+        尚未建立任何行程
+      </p>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- 頁尾 -->
+<div class="footer">
+  <label class="createLabel">新增行程</label>
+  <!-- 新增行程 -->
+  <p-button icon="pi pi-plus" class="createBtn" (click)="create()">
+  </p-button>
+</div>
+
+
+@if (isShowScheduleInfoDialog) {
+<app-schedule-info-dialog [(visible)]="isShowScheduleInfoDialog" [selectedSchedule]="newSchedule" (confirmEmitter)="createConfirm($event)" >
+</app-schedule-info-dialog>
+}

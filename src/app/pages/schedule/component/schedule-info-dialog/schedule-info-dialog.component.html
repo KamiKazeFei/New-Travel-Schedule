@@ -1,0 +1,43 @@
+<p-dialog [(visible)]="visible" [modal]="true" [header]="'建立行程'"
+  [closable]="false" [blockScroll]="true">
+  <form [formGroup]="form">
+    <div class="grid">
+      <div class="col-12">
+        <label>行程標題<span class="red">*</span></label>
+        <input pInputText type="text" formControlName="title">
+      </div>
+      <div class="col-12">
+        <label>行程敘述</label><br>
+        <textarea pInputTextArea formControlName="description"> </textarea>
+      </div>
+      <div class="col-12 xl:col-6 lg:col-6 md:col-6">
+        <label>起始日期<span class="red">*</span></label>
+        <br>
+        <p-date-picker formControlName="startDate" [yearNavigator]="true" [monthNavigator]="true"
+          [dateFormat]="'yy/mm/dd'" [appendTo]="'body'" [inputStyleClass]="'w-full'" styleClass="w-full"
+          [maxDate]="form.controls['endDate'].getRawValue()"
+          [lessThanEndDate]="form.controls['endDate'].value"
+          >
+        </p-date-picker>
+      </div>
+      <div class="col-12 xl:col-6 lg:col-6 md:col-6">
+        <label>結束日期<span class="red">*</span></label>
+        <br>
+        <p-date-picker formControlName="endDate" [yearNavigator]="true"  [monthNavigator]="true" [appendTo]="'body'"
+          [dateFormat]="'yy/mm/dd'" [inputStyleClass]="'w-full'" styleClass="w-full"
+            [minDate]="form.controls['startDate'].getRawValue()"
+            [greaterThanStartDate]="form.controls['startDate'].value"
+          >
+        </p-date-picker>
+      </div>
+    </div>
+  </form>
+  <ng-template #footer>
+    <!-- 確認 -->
+    <p-button icon="pi pi-check" [disabled]="!form.valid" [label]="'確認'" (click)="confirm()">
+    </p-button>
+    <!-- 取消 -->
+    <p-button icon="pi pi-times" [label]="'取消'" (click)="cancel()">
+    </p-button>
+  </ng-template>
+</p-dialog>

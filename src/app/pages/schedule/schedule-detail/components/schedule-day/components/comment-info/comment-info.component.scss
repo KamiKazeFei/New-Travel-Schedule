@@ -1,0 +1,15 @@
+$white-color: white;
+
+::ng-deep .ql-editor {
+  min-height: 275px;
+  max-height: 275px;
+}
+
+.p-inputtext,
+input,
+.p-inputgroup-addon {
+  background: transparent;
+  border: 0px;
+  border-bottom: 1px solid $white-color;
+  border-radius: 0px;
+}

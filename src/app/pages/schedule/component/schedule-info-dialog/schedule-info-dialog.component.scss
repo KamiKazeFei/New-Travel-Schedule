@@ -1,0 +1,19 @@
+.red {
+  color: red;
+}
+
+textarea {
+  height: 180px;
+
+}
+
+:host ::ng-deep .p-dialog {
+  width: 75rem !important;
+}
+
+@media screen and (min-height: 500px) {
+  :host ::ng-deep .p-dialog {
+    width: 75rem !important;
+    height: 35rem !important;
+  }
+}

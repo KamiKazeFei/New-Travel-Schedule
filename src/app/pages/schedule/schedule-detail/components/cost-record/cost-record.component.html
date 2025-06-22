@@ -1,0 +1,125 @@
+<div class="grid p-2 cost-record-contet grayBottom">
+
+  <!-- 標題 -->
+  <div class="col-12 grayBottom center">
+    <label class="cost-record-title">預算紀錄表</label>
+  </div>
+
+  <!-- 工具列 -->
+  <div class="col-12 toolbar">
+    <!-- 檢視花費分析 -->
+    <p-button icon="pi pi-eye" class="left" (click)="openCostAnalysisDialog()" [label]="'檢視花費分析'">
+    </p-button>
+    <!-- 總花費 -->
+    <label class="toolbarCostLabel">
+      總花費：
+      {{ (schedule.realCost ?? 0) | number:'1.0-0' }}
+    </label>
+  </div>
+
+  <!-- 工具列 -->
+  <div class="col-12 totalCostBar">
+    <label class="totalCostLabel">
+      總花費：{{ (schedule.realCost ?? 0) | number:'1.0-0' }}
+    </label>
+  </div>
+
+  <!-- 標題列 -->
+  <div class="col-12 costRecordTitle">
+    <div class="grid zeroPadding white-color">
+      <!-- 類型 -->
+      <div class="col-2 xl:col-1 lg:col-1 md:col-1 sm:col-1 center sortColumn" (click)="sortCostRecordsData('type')">
+        <label>{{'類型'}}</label>
+        <!-- 顯示icon -->
+        <ng-container *ngTemplateOutlet="icon;context:{columnName:'type'}">
+        </ng-container>
+      </div>
+      <!-- 敘述 -->
+      <div class="col-6 xl:col-6 lg:col-6 md:col-6 sm:col-10 center sortColumn"
+        (click)="sortCostRecordsData('description')">
+        <label>{{'敘述'}}</label>
+        <!-- 顯示icon -->
+        <ng-container *ngTemplateOutlet="icon;context:{columnName:'description'}">
+        </ng-container>
+      </div>
+      <!-- 價格 -->
+      <div class="col-3 xl:col-4 lg:col-5 md:col-5 center sortColumn" (click)="sortCostRecordsData('cost')">
+        <label>{{'價格'}}</label>
+        <!-- 顯示icon -->
+        <ng-container *ngTemplateOutlet="icon;context:{columnName:'cost'}">
+        </ng-container>
+      </div>
+      <!-- 移除 -->
+      <div class="col-1 center">
+        <label>{{'移除'}}</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 預算列表 -->
+  <div class="col-12 costRecordList">
+    @if(schedule.costRecords.length > 0) {
+    <div class="grid p-0 ">
+      @for (data of schedule.costRecords; track data.id) {
+      <div class="col-12 costRecord grayBottom">
+        <div class="grid p-0 white-color">
+          <!-- 移除(手機板) -->
+          <div class="col-4 center mobileDeleteBtn">
+            <p-button [icon]="'pi pi-trash'" (click)="deleteCostRecord(data)">
+            </p-button>
+          </div>
+          <!-- 類型 -->
+          <div class="col-8 xl:col-1 lg:col-1 md:col-1 sm:col-2 center">
+            <select pInputText [(ngModel)]="data.type" placeholder="請選擇類型">
+              @for (option of costTypeOptions; track option.value) {
+              <option [label]="option.label" [value]="option.value">
+              </option>
+              }
+            </select>
+          </div>
+          <!-- 敘述 -->
+          <div class="col-12 xl:col-6 lg:col-6 md:col-6 sm:col-10 center">
+            <input pInputText type="text" [(ngModel)]="data.description" placeholder="請輸入敘述">
+          </div>
+          <!-- 價格 -->
+          <div class="col-12 xl:col-4 lg:col-5 md:col-5 center">
+            <p-inputNumber [(ngModel)]="data.cost" (ngModelChange)="calculateCost()" [maxlength]="8"
+              placeholder="請輸入花費">
+            </p-inputNumber>
+          </div>
+          <!-- 移除 -->
+          <div class="col-1 center desktopDeleteBtn">
+            <p-button [icon]="'pi pi-trash'" (click)="deleteCostRecord(data)">
+            </p-button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    }
+    @else {
+    <div class="w-full center">
+      <p class="text-2xl font-bold">沒有任何預算紀錄</p>
+    </div>
+    }
+  </div>
+</div>
+
+<!-- 顯示ICON -->
+<ng-template #icon let-columnName="columnName">
+  <ng-container *ngIf="checkSortKeyInMap(columnName)">
+    <!-- 遞增 -->
+    <ng-container *ngIf="costRecordSortMap[columnName];else reverse">
+      <label>▲</label>
+    </ng-container>
+    <!-- 遞減 -->
+    <ng-template #reverse>
+      <label>▼</label>
+    </ng-template>
+  </ng-container>
+</ng-template>
+
+@if(costAnalysisDialogVisible){
+<app-cost-chart [(costAnalysisDialogVisible)]="costAnalysisDialogVisible" [costRecords]="schedule.costRecords">
+</app-cost-chart>
+}
