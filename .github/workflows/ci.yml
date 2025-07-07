@@ -19,4 +19,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - uses: docker/build-push-action@v4
-      - run: docker build -t schedule:latest .
+        with:
+          context: .
+          push: false
+          tags: schedule:latest

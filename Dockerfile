@@ -19,4 +19,4 @@ RUN npm run build
 FROM scratch AS export
 
 # 把 build 出來的靜態檔案複製出來，假設是 build 出在 /app/dist
-COPY --from=build /app/dist/browser ./dist
+COPY --from=build /new-project/dist/browser ./dist
