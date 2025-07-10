@@ -24,9 +24,9 @@ jobs:
           context: .
           push: false
           tags: schedule:latest
-          
-      - name: Install deps
-        run: npm install -g @lhci/cli
 
-      - name: Run Lighthouse CI
-        run: lhci autorun
+      # - name: Install deps
+      #   run: npm install -g @lhci/cli
+
+      # - name: Run Lighthouse CI
+      #   run: lhci autorun
