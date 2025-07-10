@@ -16,12 +16,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          
-      - name: Install deps
-        run: npm install -g @lhci/cli
-
-      - name: Run Lighthouse CI
-        run: lhci autorun
 
       - run: npm ci
       - run: npm run build
@@ -30,3 +24,9 @@ jobs:
           context: .
           push: false
           tags: schedule:latest
+          
+      - name: Install deps
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse CI
+        run: lhci autorun
